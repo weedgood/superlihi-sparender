@@ -20,6 +20,7 @@
     "blessed-contrib": "^4.8.20",
     "cheerio": "^1.0.0-rc.3",
     "dayjs": "^1.9.1",
+    "dotenv": "^8.2.0",
     "fs-extra": "^9.0.1",
     "generic-pool": "^3.7.1",
     "hmacsha1": "^1.0.0",

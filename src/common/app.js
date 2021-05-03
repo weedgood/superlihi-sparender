@@ -1,3 +1,5 @@
+require('dotenv').config();
+
 const Tools = require('./tools');
 const Logger = require('./logger/logger');
 const path = require('path');

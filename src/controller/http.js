@@ -30,8 +30,8 @@ module.exports = class extends zuoyan.Controller {
 
 
     server.listen(tools.config('port'), function () {
-      console.log('服务器启动成功!');
-      console.log('正在监听 ' + tools.config('port') + ' 端口');
+      console.log('Server Started!');
+      console.log('Listening: ' + tools.config('port') + ' port');
 
     });
   }

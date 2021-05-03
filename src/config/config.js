@@ -1,11 +1,11 @@
 const mysql = require('think-model-mysql');
 module.exports = {
-  port: 3001,
+  port: process.env.SSR_PORT,
   renderLimit: 10,
   pageTimeout: 1000 * 20,
   redis: {
-    port: 6379,
-    host: '127.0.0.1',
+    port: process.env.REDIS_PORT,
+    host: process.env.REDIS_HOST,
     ex: 60 * 60 * 24 * 7
   },
   mobileRender: {
