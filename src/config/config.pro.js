@@ -1,4 +1,3 @@
-const mysql = require('think-model-mysql');
 module.exports = {
   port: 3001,
   renderLimit: 10,
@@ -30,28 +29,6 @@ module.exports = {
         '--enable-features=NetworkService',
         '--disable-popup-blocking'
       ]
-    }
-  },
-  database: {
-    common: { // 通用配置
-      logConnect: true, // 是否打印数据库连接信息
-      logSql: true, // 是否打印 SQL 语句
-      logger: msg => logger.info(msg) // 打印信息的 logger
-    },
-    mysql: {
-      handle: mysql,
-      database: 'xxxx',
-      prefix: 'pz_',
-      encoding: 'utf8',
-      host: '127.0.0.1',
-      port: '',
-      user: 'xxxx',
-      password: 'xxxx',
-      dateStrings: true,
-      supportBigNumbers: true,
-      bigNumberStrings: true,
-      connectionLimit: 10, // 连接池的连接个数，默认为 1
-      debounce: false, // 关闭 debounce 功能
     }
   }
 };

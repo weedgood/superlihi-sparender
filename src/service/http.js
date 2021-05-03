@@ -25,10 +25,10 @@ module.exports = class extends zuoyan.Service {
             return (data.replace(/<script[^>]*>[\s\S]*?<\/[^>]*script>/gi, ''));
           }
         } else {
-          return 'error:超出并发限制,请稍后重试';
+          return 'error: limit reached';
         }
       } else {
-        return 'error:渲染的url不合法';
+        return 'error: invalid url';
       }
     } catch (e) {
       // logger.error(e);
