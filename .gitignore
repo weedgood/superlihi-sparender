@@ -14,5 +14,4 @@ task.db
 # IDE config
 .idea
 .vscode
-
-
+.env
