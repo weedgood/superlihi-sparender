@@ -1,7 +1,12 @@
 module.exports = {
-  port: 3001,
+  port: process.env.SSR_PORT,
   renderLimit: 10,
   pageTimeout: 1000 * 10,
+  redis: {
+    port: process.env.REDIS_PORT,
+    host: process.env.REDIS_HOST,
+    ex: 60 * 60 * 24 * 7
+  },
   puppeteer: {
     max: 3,//最多产生多少个 puppeteer 实例 。如果你设置它，请确保 在引用关闭时调用清理池。 pool.drain().then(()=>pool.clear())
     min: 1,//保证池中最少有多少个实例存活

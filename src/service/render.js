@@ -115,15 +115,10 @@ module.exports = class extends zuoyan.Service {
             logger.info(await response.url() + ' ' + await response.request().method() + ' ' + await response.status() + ' ' + await response.request().resourceType());
           });
           const timeStart = new Date().getTime();
-          try {
-            await page.goto(url, {
-              // waitUntil: "networkidle0",
-              timeout: tools.config('pageTimeout')
-            });
-          } catch (e) {
-
-          }
-
+          await page.goto(url, {
+            // waitUntil: "networkidle0",
+            timeout: tools.config('pageTimeout')
+          });
           await pendingXHR.waitForAllXhrFinished();
           const html = await page.content();
           logger.warn(url + ' ' + (new Date().getTime() - timeStart) + 'ms');
