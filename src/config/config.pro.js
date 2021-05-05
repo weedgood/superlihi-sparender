@@ -1,6 +1,6 @@
 module.exports = {
   port: process.env.SSR_PORT,
-  renderLimit: 10,
+  renderLimit: process.env.RENDER_LIMIT,
   pageTimeout: 1000 * 10,
   redis: {
     port: process.env.REDIS_PORT,
