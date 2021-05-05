@@ -5,7 +5,7 @@ module.exports = {
   redis: {
     port: process.env.REDIS_PORT,
     host: process.env.REDIS_HOST,
-    ex: 60 * 60 * 24 * 7
+    ex: 60 * 60 * 24 * process.env.REDIS_CACHE_DAYS
   },
   puppeteer: {
     max: 3,//最多产生多少个 puppeteer 实例 。如果你设置它，请确保 在引用关闭时调用清理池。 pool.drain().then(()=>pool.clear())
