@@ -7,6 +7,7 @@ module.exports = class extends zuoyan.Controller {
     super();
     this.routerS = this.service('router');
     global.renderLimit = 0;
+    logger.info('renderLimit init: ' + renderLimit);
   }
 
   async startServer() {
@@ -14,13 +15,14 @@ module.exports = class extends zuoyan.Controller {
       let urlObj = url.parse(req.url, true);
       req.urlObj = urlObj;
       console.log(urlObj, req.url);
-      console.log(req.headers['user-agent']);
+      logger.info(req.headers['user-agent']);
 
       //连接关闭事件
       res.on('close', async () => {
         const data = await zyRedis.get(urlObj.href);
         if (data) {
           global.renderLimit--;
+          logger.info('renderLimit--: ' + renderLimit);
           zyRedis.del(urlObj.href);
         }
         // logger.warn('close', req.url);

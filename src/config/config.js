@@ -5,7 +5,7 @@ module.exports = {
   redis: {
     port: process.env.REDIS_PORT,
     host: process.env.REDIS_HOST,
-    ex: 60 * 60 * 24 * 7
+    ex: 60 * 60 * 24 * process.env.REDIS_CACHE_DAYS
   },
   mobileRender: {
     name: 'iPhone X',

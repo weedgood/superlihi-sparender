@@ -4,8 +4,7 @@
   "description": "动态渲染SPA站点, 为搜索引擎提供JavaScript站点SEO优化方案",
   "main": "index.js",
   "scripts": {
-    "start": "node production.js",
-    "dev": "node development.js",
+    "start": "node development.js",
     "testing": "node testing.js",
     "monit": "LANG=en_US.utf8 TERM=xterm-256color node ./src/common/monit/index.js"
   },
