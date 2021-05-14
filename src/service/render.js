@@ -86,6 +86,7 @@ module.exports = class extends zuoyan.Service {
       return new Promise(async (resolve, reject) => {
         try {
           const page = await instance.newPage();
+          await page.setUserAgent('Googlebot/2.1 (+http://www.googlebot.com/bot.html)');
           //如果是移动端则设置UA和视图
           if (isMobile) {
             let iPhoneX = tools.config('mobileRender');
