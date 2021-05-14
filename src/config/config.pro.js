@@ -1,14 +1,27 @@
 module.exports = {
   port: process.env.SSR_PORT,
-  renderLimit: process.env.RENDER_LIMIT,
+  renderLimit: 10,
   pageTimeout: 1000 * 10,
   redis: {
     port: process.env.REDIS_PORT,
     host: process.env.REDIS_HOST,
     ex: 60 * 60 * 24 * process.env.REDIS_CACHE_DAYS
   },
+  mobileRender: {
+    name: 'iPhone X',
+    userAgent:
+        'Mozilla/5.0 (iPhone; CPU iPhone OS 11_0 like Mac OS X) AppleWebKit/604.1.38 (KHTML, like Gecko) Version/11.0 Mobile/15A372 Safari/604.1',
+    viewport: {
+      width: 375,
+      height: 812,
+      deviceScaleFactor: 3,
+      isMobile: false,
+      hasTouch: false,
+      isLandscape: false,
+    }
+  },
   puppeteer: {
-    max: 3,//最多产生多少个 puppeteer 实例 。如果你设置它，请确保 在引用关闭时调用清理池。 pool.drain().then(()=>pool.clear())
+    max: 4,//最多产生多少个 puppeteer 实例 。如果你设置它，请确保 在引用关闭时调用清理池。 pool.drain().then(()=>pool.clear())
     min: 1,//保证池中最少有多少个实例存活
     maxUses: 2048,//每一个 实例 最大可重用次数，超过后将重启实例。0表示不检验
     testOnBorrow: true,// 在将 实例 提供给用户之前，池应该验证这些实例。
