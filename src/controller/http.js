@@ -15,7 +15,7 @@ module.exports = class extends zuoyan.Controller {
       let urlObj = url.parse(req.url, true);
       req.urlObj = urlObj;
       console.log(urlObj, req.url);
-      logger.info(req.headers['user-agent']);
+      console.log(req.headers['user-agent']);
 
       //连接关闭事件
       res.on('close', async () => {
