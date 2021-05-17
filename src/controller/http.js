@@ -21,11 +21,9 @@ module.exports = class extends zuoyan.Controller {
       res.on('close', async () => {
         const data = await zyRedis.get(urlObj.href);
         if (data) {
-          global.renderLimit--;
-          logger.info('renderLimit--: ' + renderLimit);
           zyRedis.del(urlObj.href);
         }
-        // logger.warn('close', req.url);
+        logger.warn('close', req.url);
       });
       this.routerS.router(req, res);
     });

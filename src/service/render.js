@@ -81,6 +81,8 @@ module.exports = class extends zuoyan.Service {
    * 
    */
   async htmlRender(url = 'http://127.0.0.1:8181/', isMobile = false) {
+    global.renderLimit++;
+    logger.info('renderLimit++: ' + renderLimit);
     // 在业务中取出实例使用
     return await global.pptPoll.use(async instance => {
       return new Promise(async (resolve, reject) => {
@@ -129,6 +131,8 @@ module.exports = class extends zuoyan.Service {
           const html = await page.content();
           logger.warn(url + ' ' + (new Date().getTime() - timeStart) + 'ms');
           page.close();
+          global.renderLimit--;
+          logger.info('renderLimit--: ' + renderLimit);
           resolve(html);
         } catch (e) {
           logger.error(url, e);

@@ -16,8 +16,6 @@ module.exports = class extends zuoyan.Service {
 
           const data = await zyRedis.get(redisKey);
           if (tools.isEmpty(data)) {
-            global.renderLimit++;
-            logger.info('renderLimit++: ' + renderLimit);
             await zyRedis.set(href, 'limit', 'ex', 5 * 60);
             const content = await this.renderS.htmlRender(url, isMobile);
             zyRedis.set(redisKey, content, 'ex', tools.config('redis').ex);
