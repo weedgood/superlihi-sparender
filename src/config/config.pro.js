@@ -1,7 +1,7 @@
 module.exports = {
   port: process.env.SSR_PORT,
   renderLimit: 10,
-  pageTimeout: 1000 * 10,
+  pageTimeout: 1000 * 3,
   redis: {
     port: process.env.REDIS_PORT,
     host: process.env.REDIS_HOST,
@@ -21,7 +21,7 @@ module.exports = {
     }
   },
   puppeteer: {
-    max: 4,//最多产生多少个 puppeteer 实例 。如果你设置它，请确保 在引用关闭时调用清理池。 pool.drain().then(()=>pool.clear())
+    max: 8,//最多产生多少个 puppeteer 实例 。如果你设置它，请确保 在引用关闭时调用清理池。 pool.drain().then(()=>pool.clear())
     min: 1,//保证池中最少有多少个实例存活
     maxUses: 2048,//每一个 实例 最大可重用次数，超过后将重启实例。0表示不检验
     testOnBorrow: true,// 在将 实例 提供给用户之前，池应该验证这些实例。
