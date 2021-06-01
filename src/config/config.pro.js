@@ -33,19 +33,13 @@ module.exports = {
       devtools: false,
       ignoreHTTPSErrors: true,
       args: [
-        '--disable-gpu',
-        '--disable-dev-shm-usage',
-        '--disable-setuid-sandbox',
-        "--disable-xss-auditor",//关闭 XSS Auditor
-        '--no-first-run',
         '--no-sandbox',
-        '–disable-extensions',
-        '--no-zygote',
-        '--single-process',
-        '--disable-web-security',
-        '--blink-settings=imagesEnabled=false',
-        '--enable-features=NetworkService',
-        '--disable-popup-blocking'
+        '--disable-setuid-sandbox',
+        '--disable-dev-shm-usage', // 创建临时文件共享内存
+        '--disable-accelerated-2d-canvas', // canvas渲染
+        '--disable-gpu', // GPU硬件加速
+        '--no-zygote', // 禁止zygote进程fork子进程
+        '--single-process', // 单进程
       ]
     }
   }

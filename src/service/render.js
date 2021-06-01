@@ -77,9 +77,6 @@ module.exports = class extends zuoyan.Service {
     global.pptPoll = this.initPuppeteerPool();
   }
 
-  /**
-   * 
-   */
   async htmlRender(url = 'http://127.0.0.1:8181/', isMobile = false) {
     global.renderLimit++;
     logger.info('renderLimit++: ' + renderLimit);
@@ -113,14 +110,14 @@ module.exports = class extends zuoyan.Service {
               });
             }
           });
-          //响应
+
           page.on('response', async response => {
-            logger.info(await response.url() + ' ' + await response.request().method() + ' ' + await response.status() + ' ' + await response.request().resourceType());
+            console.log(await response.url() + ' ' + await response.request().method() + ' ' + await response.status() + ' ' + await response.request().resourceType());
           });
           const timeStart = new Date().getTime();
           try {
             await page.goto(url, {
-              // waitUntil: "networkidle0",
+              waitUntil: "networkidle0",
               timeout: tools.config('pageTimeout')
             });
           } catch (e) {
