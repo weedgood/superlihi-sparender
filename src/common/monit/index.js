@@ -1,10 +1,7 @@
 const blessed = require('blessed');
 const contrib = require('blessed-contrib');
-const Datastore = require('nedb-promises');
 const Nedb = require('./nedb');
 const Tools = require('./tools');
-const Tail = require('nodejs-tail');
-const path = require('path');
 
 class Monit {
   constructor() {
@@ -88,13 +85,6 @@ class Monit {
 
     });
     this.screen.append(log);
-    const tail = new Tail(path.resolve('.', './runtime/logs/app.' + this.tools.formatTime(this.tools.getUnixTime(), 'YYYY-MM-DD') + '.log'));
-
-    tail.on('line', (line) => {
-      log.log(line);
-    });
-    tail.watch();
-
   }
 };
 
