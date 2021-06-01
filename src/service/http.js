@@ -11,18 +11,22 @@ module.exports = class extends zuoyan.Service {
       if (this._checkRenderUrl(url)) {
         if (this._checkRenderLimit()) {
           const isMobile = userAgent && tools.checkMobile(userAgent);
-          logger.error('isMobile', isMobile);
           const redisKey = this._formatUrlKey(url, isMobile);
 
-          const data = await zyRedis.get(redisKey);
-          if (tools.isEmpty(data)) {
-            await zyRedis.set(href, 'limit', 'ex', 5 * 60);
+          //const data = await zyRedis.get(redisKey);
+          //if (tools.isEmpty(data)) {
+            await zyRedis.set(href, 'limit', 'ex', 1);
+            console.log('url: ', url)
+            global.renderLimit++;
+            console.log('renderLimit: ', global.renderLimit)
             const content = await this.renderS.htmlRender(url, isMobile);
+            global.renderLimit--;
+            console.log('renderLimit: ', global.renderLimit)
             zyRedis.set(redisKey, content, 'ex', tools.config('redis').ex);
             return (content.replace(/<script[^>]*>[\s\S]*?<\/[^>]*script>/gi, ''));
-          } else {
-            return (data.replace(/<script[^>]*>[\s\S]*?<\/[^>]*script>/gi, ''));
-          }
+          // } else {
+          //   return (data.replace(/<script[^>]*>[\s\S]*?<\/[^>]*script>/gi, ''));
+          // }
         } else {
           return 'error: limit reached';
         }
@@ -48,11 +52,13 @@ module.exports = class extends zuoyan.Service {
    * check render并发限制
    */
   _checkRenderLimit() {
-    if (global.renderLimit >= tools.config('renderLimit')) {
-      return false;
-    } else {
-      return true;
-    }
+    logger.info('renderLimit: ', global.renderLimit)
+    return true;
+    // if (global.renderLimit >= tools.config('renderLimit')) {
+    //   return false;
+    // } else {
+    //   return true;
+    // }
   }
   /**
    *  格式化redis的key
