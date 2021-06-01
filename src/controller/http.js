@@ -14,8 +14,6 @@ module.exports = class extends zuoyan.Controller {
     const server = http.createServer(async (req, res) => {
       let urlObj = url.parse(req.url, true);
       req.urlObj = urlObj;
-      console.log(urlObj, req.url);
-      console.log(req.headers['user-agent']);
 
       //连接关闭事件
       res.on('close', async () => {
@@ -23,7 +21,7 @@ module.exports = class extends zuoyan.Controller {
         if (data) {
           zyRedis.del(urlObj.href);
         }
-        logger.warn('close', req.url);
+        console.log('close', req.url);
       });
       this.routerS.router(req, res);
     });
