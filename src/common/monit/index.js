@@ -2,6 +2,8 @@ const blessed = require('blessed');
 const contrib = require('blessed-contrib');
 const Nedb = require('./nedb');
 const Tools = require('./tools');
+const Tail = require('tail');
+const path = require('path');
 
 class Monit {
   constructor() {
@@ -82,8 +84,13 @@ class Monit {
         type: "line",
         fg: "cyan"
       }
-
     });
+    const tail = new Tail(path.resolve('.', './runtime/logs/app.' + this.tools.formatTime(this.tools.getUnixTime(), 'YYYY-MM-DD') + '.log'));
+
+    tail.on('line', (line) => {
+      log.log(line);
+    });
+    tail.watch();
     this.screen.append(log);
   }
 };
