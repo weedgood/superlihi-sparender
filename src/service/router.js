@@ -14,12 +14,10 @@ module.exports = class extends zuoyan.Service {
       switch (pathName) {
         case '/render':
           req.urlObj.query.url = decodeURIComponent(req.urlObj.query.url || '');
-          console.log(req.urlObj.href, req.urlObj.query.url);
           result = await this.httpS.getRenderContent(req.urlObj.href, req.urlObj.query.url, req.headers['user-agent']);
           break;
         default:
           const tUrl = decodeURIComponent(req.urlObj.href.substring(1));
-          console.log('tUrl', tUrl);
           result = await this.httpS.getRenderContent(req.urlObj.href, tUrl, req.headers['user-agent']);
           break;
       }
