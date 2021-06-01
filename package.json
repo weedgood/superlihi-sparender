@@ -22,7 +22,6 @@
     "dayjs": "^1.9.1",
     "dotenv": "^8.2.0",
     "fs-extra": "^9.0.1",
-    "fsevents": "^2.3.2",
     "generic-pool": "^3.7.1",
     "hmacsha1": "^1.0.0",
     "ioredis": "^4.19.2",
